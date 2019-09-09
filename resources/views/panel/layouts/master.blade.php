@@ -4,16 +4,17 @@
 		<title>{{ $title ?? 'Painel' }}</title>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <!-- Bootstrap -->
+		<link rel="stylesheet" href="{{ url('assets/panel/css/font-awesome.min.css') }}"> <!-- fonts -->
         <link rel="stylesheet" href="{{ url('assets/panel/css/especializati.css') }}"> <!-- especializati -->
 		<link rel="stylesheet" href="{{ url('assets/panel/css/especializati-reset.css') }}"> <!-- especializati reset -->
-		<link rel="icon" type="image/png" href="{{ url('assets/panel/imgs/favicon.png') }}"> <!--Favicon-->
+		<link rel="icon" type="image/png" href="{{ url('assets/panel/imgs/favicon.png') }}"> <!-- favicon -->
 	</head>
 <body>
 
 <section class="menu">
 	
 	<div class="logo">
-		<img src="imgs/icone-especializati.png" alt="EspecializaTi" class="logo-painel">
+		<img src="{{ url('assets/panel/imgs/icone-especializati.png') }}" alt="EspecializaTi" class="logo-painel">
 	</div>
 
 	<div class="list-menu">
