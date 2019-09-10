@@ -3,9 +3,10 @@
 Auth::routes();
 
 ##  PANEL
-Route::group(['namespace' => 'Panel', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth'], function () {
     
-    Route::resource('panel', 'PanelController'); ## INDEX
+    Route::resource('', 'PanelController'); ## INDEX
+    Route::resource('panel/brands', 'BrandController'); ## BRAND
 
 });
 

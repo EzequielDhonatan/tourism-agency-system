@@ -26,6 +26,6 @@
 
     @endfor
 
-</div><!--Content Dinâmico-->
+</div> <!-- content-din -->
     
 @endsection

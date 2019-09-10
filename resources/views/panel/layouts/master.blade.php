@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ $title ?? 'Painel' }}</title>
+		<title>{{ $title ?? 'Painel Administrativo' }}</title>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <!-- Bootstrap -->
 		<link rel="stylesheet" href="{{ url('assets/panel/css/font-awesome.min.css') }}"> <!-- fonts -->
@@ -14,33 +14,29 @@
 	<section class="menu">
 		
 		<div class="logo">
-			<img src="{{ url('assets/panel/imgs/icone-especializati.png') }}" alt="EspecializaTi" class="logo-painel">
+			<img src="{{ url('assets/panel/imgs/icone-especializati.png') }}" class="logo-painel" alt="">
 		</div>
 
 		<div class="list-menu">
+
 			<ul class="menu-list">
 				<li>
-					<a href="?pag=home">
+					<a href="#">
 						<i class="fa fa-home" aria-hidden="true"></i>
 						Home
 					</a>
 				</li>
 
 				<li>
-					<a href="?pag=list">
-						<i class="fa fa-id-card" aria-hidden="true"></i>
-						Listagem
+					<a href="{{ route('brands.index') }}">
+						<i class="fa fa-university" aria-hidden="true"></i>
+						Marcas
 					</a>
 				</li>
-
-				<li>
-					<a href="?pag=forms">
-						<i class="fa fa-fort-awesome" aria-hidden="true"></i>
-						Forms
-					</a>
-				</li>
+				
 			</ul>
-		</div>
+
+		</div> <!-- list-menu -->
 
 	</section><!--End Menu-->
 
@@ -81,7 +77,7 @@
 		<div class="content-ds">
 			
 			<div class="bred">
-				<a href="" class="bred">Home  ></a> <a href="" class="bred">Dashboard</a>
+				<a href="{{ route('index') }}" class="bred">Dashboard</a>
 			</div>
 			
 			@yield('content')
