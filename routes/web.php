@@ -6,7 +6,7 @@ Auth::routes();
 Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth'], function () {
     
     Route::resource('', 'PanelController'); ## INDEX
-    Route::resource('panel/brands', 'BrandController'); ## BRAND
+    Route::resource('brands', 'BrandController'); ## BRAND
 
 });
 

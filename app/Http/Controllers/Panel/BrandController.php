@@ -8,9 +8,13 @@ use App\Models\Brand\Brand;
 
 class BrandController extends Controller
 {
-    public function __construct()
+    private $brand;
+
+    public function __construct(Brand $brand)
     {
         $this->middleware('auth');
+
+        $this->brand = $brand;
     }
     /**
      * Display a listing of the resource.
@@ -19,9 +23,14 @@ class BrandController extends Controller
      */
     public function index()
     {
+        ## TÍTULO
         $title = 'Marcas de aviões';
 
-        return view('panel.brands.index', compact('title'));
+        ## RECUPERA
+        $brands = $this->brand->all();
+
+        ##  RETORNO
+        return view('panel.brands.index', compact('title', 'brands'));
     }
 
     /**
@@ -47,7 +56,15 @@ class BrandController extends Controller
         ## RECUPERA
         $dataForm = $request->all();
 
-        dd(Brand::create($dataForm));
+        ## CADASTRA
+        $insert = $this->brand->create($dataForm);
+
+        ## VERIFICA
+        if (!$insert)
+            return redirect()->back()->withError('Ops... Falha ao cadastrar!');;
+
+        ## RETORNO
+        return redirect()->route('brands.index')->withSuccess('Registro cadastrado com sucesso');
     }
 
     /**
