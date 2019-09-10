@@ -75,13 +75,7 @@
 		</div> <!-- top-dashboard -->
 
 		<div class="content-ds">
-			
-			<div class="bred">
-				<a href="{{ route('index') }}" class="bred">Dashboard</a>
-			</div>
-			
 			@yield('content')
-
 		</div> <!-- contentds -->
 
 	</section> <!--content -->
