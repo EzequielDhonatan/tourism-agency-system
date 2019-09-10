@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration
             ================================================== */
             $table->string('name'); ## NOME
             $table->string('email')->unique(); ## E-MAIL
+            $table->string('image', 200)->nullable(); ## IMAGEM
             $table->timestamp('email_verified_at')->nullable(); ## E-MAIL VERIFICADO
             $table->string('password'); ## SENHA
             $table->rememberToken(); ## LEMBRAR TOKEN
-            $table->string('image', 200); ## IMAGEM
         
             $table->timestamps();
         });

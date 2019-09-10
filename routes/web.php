@@ -1,7 +1,12 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+##  PANEL
+Route::group(['namespace' => 'Panel', 'middleware' => 'auth'], function () {
+    
+    Route::resource('panel', 'PanelController'); ## INDEX
+
 });
 
 ##  SITE
@@ -9,12 +14,5 @@ Route::group(['namespace' => 'Site'], function () {
     
     Route::get('/', 'SiteController@index'); ## HOME
     Route::get('promocoes', 'SiteController@promotions')->name('promotions'); ## PROMOÇÕES
-
-});
-
-##  PANEL
-Route::group(['namespace' => 'Panel'], function () {
-    
-    Route::resource('home', 'PanelController'); ## HOME
 
 });
