@@ -29,7 +29,7 @@ class StoreUpdateFormRequest extends FormRequest
             
             /* DADOS DA MARCA
             ================================================== */
-            'name'                            => "required|unique:brands,name,{$id},id",
+            'name'                            => "required|min:3|max:100|unique:brands,name,{$id},id",
 
         ];
     }
