@@ -13,8 +13,12 @@
 
 <div class="content-din bg-white">
 
-    @include('includes.alerts') <!-- Alerts -->
-    @include('includes.errors') <!-- Errors -->
+    <div class="messages">
+
+        @include('panel.includes.alerts') <!-- Alerts -->
+        @include('panel.includes.errors') <!-- Errors -->
+
+    </div> <!-- messages -->
 
     <div class="content-din">
 
@@ -29,26 +33,7 @@
 
     <div class="form-search">
 
-        <form class="form form-inline" method="POST" action="{{ route('brands.search') }}">
-
-            {{ csrf_field() }}
-
-            <input type="text" class="form-control" name="key_search" placeholder="Nome">
-
-            <button class="btn btn-primary">Pesquisar</button>
-
-        </form> <!-- form form-inline -->
-
-        @if (isset($dataForm['key_search']))
-            <div class="alert alert-info">
-                <p>
-                    <a href="{{route('brands.index')}}">
-                        <i class="fa fa-refresh" aria-hidden="true"></i>
-                    </a>
-                    Pesquisado: <strong>{{ $dataForm['key_search'] }}</strong>
-                </p>
-            </div>
-        @endif
+        @include('panel.brands.search') <!-- Search -->        
 
     </div> <!-- form-search -->
     
@@ -95,7 +80,7 @@
 
     </table> <!-- table table-striped -->
 
-    @if (isset($dataForm))
+    @if(isset($dataForm))
         {!! $brands->appends($dataForm)->links() !!}
     @else
         {!! $brands->links() !!}

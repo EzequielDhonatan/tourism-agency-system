@@ -14,8 +14,12 @@
 
 <div class="content-din">
 
-    @include('includes.alerts') <!-- Alerts -->
-    @include('includes.errors') <!-- Errors -->
+    <div class="messages">
+
+        @include('panel.includes.alerts') <!-- Alerts -->
+        @include('panel.includes.errors') <!-- Errors -->
+
+    </div> <!-- messages -->
 
     @if (isset($brand))
 
@@ -26,9 +30,10 @@
     @else
 
         <form class="form form-search form-ds" method="POST" action="{{ route('brands.store') }}">
-        {{ csrf_field() }}
 
     @endif
+
+        {{ csrf_field() }}
 
         <div class="form-group">
             <input type="text" class="form-control" name="name" value="{{ $brand->name ?? old('name') }}" placeholder="Nome">

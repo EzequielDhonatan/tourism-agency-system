@@ -10,7 +10,7 @@ use App\Http\Requests\Panel\Brand\StoreUpdateFormRequest;
 class BrandController extends Controller
 {
     private $brand;
-    protected $totalPage;
+    private $totalPage = 10;
 
     public function __construct(Brand $brand)
     {
