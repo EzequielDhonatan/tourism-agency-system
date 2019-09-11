@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Brand\Brand;
+use App\Http\Requests\Panel\Brand\StoreUpdateFormRequest;
 
 class BrandController extends Controller
 {
@@ -51,16 +52,13 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateFormRequest $request)
     {
-        ## RECUPERA
-        $dataForm = $request->all();
-
-        ## VERIFICA E CADASTRA
-        if (!$this->brand->create($dataForm))
+        ## VERIFICA
+        if (!$this->brand->create($request->all()))
             return redirect()
                             ->back()
-                            ->withError('Ops... Falha ao cadastrar!');;
+                            ->withError('Ops... Falha ao cadastrar!');
 
         ## RETORNO
         return redirect()
@@ -87,7 +85,16 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        ## RECUPERA
+        if (!$brand = $this->brand->find($id))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Registro não encontrado!');
+
+        ## TÍTULO
+        $title = "Editar marca: {$brand->name}";
+
+        return view('panel.brands.edit', compact('title', 'brand'));
     }
 
     /**
@@ -97,9 +104,22 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateFormRequest $request, $id)
     {
-        //
+        ## RECUPERA
+        if (!$brand = $this->brand->find($id))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Registro não encontrado!');
+        ## VERIFICA
+        if (!$brand->update($request->all()))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Falha ao atualizar!');
+        ## RETORNO
+        return redirect()
+                        ->route('brands.index')
+                        ->withSuccess('Registro atualizado com sucesso!');
     }
 
     /**
@@ -110,6 +130,19 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ## RECUPERA
+        if (!$brand = $this->brand->find($id))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Registro não encontrado!');
+        ## VERIFICA
+        if (!$brand->delete())
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Falha ao atualizar!');
+        ## RETORNO
+        return redirect()
+                        ->route('brands.index')
+                        ->withSuccess('Registro deletado com sucesso!');
     }
 }

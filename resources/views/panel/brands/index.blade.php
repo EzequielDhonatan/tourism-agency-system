@@ -14,6 +14,7 @@
 <div class="content-din bg-white">
 
     @include('includes.alerts') <!-- Alerts -->
+    @include('includes.errors') <!-- Errors -->
 
     <div class="content-din">
 
@@ -38,6 +39,7 @@
     <table class="table table-striped">
 
         <tr>
+            <th>#</th>
             <th>Nome</th>
             <th width="150"></th>
         </tr>
@@ -47,11 +49,22 @@
             <tr>
 
                 <td>
-                    <a href="">{{ $brand->name }}</a>
+                    <a href="{{ route('brands.edit', $brand->id) }}">{{ $brand->id }}</a>
                 </td>
 
                 <td>
-                    <a href="" class="fa fa-trash delete"></a>
+                    <a href="{{ route('brands.edit', $brand->id) }}">{{ $brand->name }}</a>
+                </td>
+
+                <td>
+                    <form class="form" method="POST" action="{{ route('brands.destroy', $brand->id) }}">
+
+                        {{ csrf_field() }}
+                        {!! method_field('DELETE') !!}
+                    
+                        <button type="submit" class="fa fa-trash delete"></button>
+                    
+                    </form> <!-- form -->
                 </td>
 
             </tr> <!-- -->
