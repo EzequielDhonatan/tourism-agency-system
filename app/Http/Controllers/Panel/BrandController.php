@@ -29,7 +29,9 @@ class BrandController extends Controller
         $title = 'Marcas de aviões';
 
         ## RECUPERA
-        $brands = $this->brand->paginate($this->totalPage);
+        $brands = $this->brand
+                            ->orderBy('id', 'DESC')
+                            ->paginate($this->totalPage);
 
         ##  RETORNO
         return view('panel.brands.index', compact('title', 'brands'));
