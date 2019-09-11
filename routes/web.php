@@ -9,7 +9,7 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
 
     ## BRAND
     Route::resource('brands', 'BrandController'); ## BRAND
-    Route::post('brands/search', 'BrandController@search')->name('brands.search'); ## SEARCH BRAND
+    Route::any('brands/search', 'BrandController@search')->name('brands.search'); ## SEARCH BRAND
 
 });
 

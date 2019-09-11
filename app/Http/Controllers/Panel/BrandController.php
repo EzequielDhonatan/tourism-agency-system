@@ -153,7 +153,7 @@ class BrandController extends Controller
 
         $brands = $this->brand->search($request->key_search, $this->totalPage);
 
-        $title = "Brands, filtros para: {$request->key_search}";
+        $title = "Pesquisado: {$request->key_search}";
 
         return view('panel.brands.index', compact('dataForm', 'brands', 'title'));
     }
