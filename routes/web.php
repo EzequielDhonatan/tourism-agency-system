@@ -6,7 +6,10 @@ Auth::routes();
 Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth'], function () {
     
     Route::resource('', 'PanelController'); ## INDEX
+
+    ## BRAND
     Route::resource('brands', 'BrandController'); ## BRAND
+    Route::post('brands/search', 'BrandController@search')->name('brands.search'); ## SEARCH BRAND
 
 });
 

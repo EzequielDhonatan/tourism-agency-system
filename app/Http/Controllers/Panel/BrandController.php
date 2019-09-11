@@ -10,7 +10,7 @@ use App\Http\Requests\Panel\Brand\StoreUpdateFormRequest;
 class BrandController extends Controller
 {
     private $brand;
-    protected $totalPage = 1;
+    protected $totalPage;
 
     public function __construct(Brand $brand)
     {
@@ -145,5 +145,16 @@ class BrandController extends Controller
         return redirect()
                         ->route('brands.index')
                         ->withSuccess('Registro deletado com sucesso!');
+    }
+
+    public function search(Request $request)
+    {
+        $dataForm = $request->except('_token');
+
+        $brands = $this->brand->search($request->key_search, $this->totalPage);
+
+        $title = "Brands, filtros para: {$request->key_search}";
+
+        return view('panel.brands.index', compact('dataForm', 'brands', 'title'));
     }
 }
