@@ -14,6 +14,8 @@
 
 <div class="content-din">
 
+    @include('includes.alerts') <!-- Alerts -->
+
     <form class="form form-search form-ds" method="POST" action="{{ route('brands.index') }}">
 
         {{ csrf_field() }}

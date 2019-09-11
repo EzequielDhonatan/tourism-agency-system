@@ -56,15 +56,16 @@ class BrandController extends Controller
         ## RECUPERA
         $dataForm = $request->all();
 
-        ## CADASTRA
-        $insert = $this->brand->create($dataForm);
-
-        ## VERIFICA
-        if (!$insert)
-            return redirect()->back()->withError('Ops... Falha ao cadastrar!');;
+        ## VERIFICA E CADASTRA
+        if (!$this->brand->create($dataForm))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Falha ao cadastrar!');;
 
         ## RETORNO
-        return redirect()->route('brands.index')->withSuccess('Registro cadastrado com sucesso');
+        return redirect()
+                        ->route('brands.index')
+                        ->withSuccess('Cadastro realizado com sucesso!');
     }
 
     /**

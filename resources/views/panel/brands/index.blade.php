@@ -13,6 +13,8 @@
 
 <div class="content-din bg-white">
 
+    @include('includes.alerts') <!-- Alerts -->
+
     <div class="content-din">
 
         <div class="text-right">
