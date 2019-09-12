@@ -159,4 +159,21 @@ class BrandController extends Controller
 
         return view('panel.brands.index', compact('dataForm', 'brands', 'title'));
     }
+
+    public function planes($id)
+    {
+        ## RECUPERA E VERIFICA
+        if (!$brand = $this->brand->find($id))
+            return redirect()
+                            ->back()
+                            ->withError('Ops... Registro não encontrado!');
+
+        ## RECUPERA AVIÇOES
+        $planes = $brand->planes()->get();
+
+        ## TÍTULO
+        $title = "Aviões da marca {$brand->name}";
+
+        return view('panel.brands.planes', compact('title', 'brand', 'planes', 'title'));
+    }
 }

@@ -58,6 +58,11 @@
                 </td>
 
                 <td>
+                    
+                    <a href="{{ route('brands.planes', $brand->id) }}">
+                        <i class="fa fa-plane edit" aria-hidden="true" style="font-size: 20px"></i>
+                    </a>
+
                     <form class="form" method="POST" action="{{ route('brands.destroy', $brand->id) }}">
 
                         {{ csrf_field() }}

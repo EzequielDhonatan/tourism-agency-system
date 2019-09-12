@@ -9,6 +9,7 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
 
     ## BRAND
     Route::resource('brands', 'BrandController'); ## BRAND
+    Route::get('brands/{id}/planes', 'BrandController@planes')->name('brands.planes'); ## BRAND PLANE
     Route::any('brands/search', 'BrandController@search')->name('brands.search'); ## SEARCH BRAND
 
     ## PLANE
