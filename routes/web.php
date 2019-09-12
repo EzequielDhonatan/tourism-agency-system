@@ -11,6 +11,10 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
     Route::resource('brands', 'BrandController'); ## BRAND
     Route::any('brands/search', 'BrandController@search')->name('brands.search'); ## SEARCH BRAND
 
+    ## PLANE
+    Route::resource('planes', 'PlaneController'); ## PLANE
+    Route::any('planes/search', 'PlaneController@search')->name('planes.search'); ## SEARCH PLANE
+
 });
 
 ##  SITE

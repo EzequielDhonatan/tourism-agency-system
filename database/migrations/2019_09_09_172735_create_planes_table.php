@@ -21,13 +21,19 @@ class CreatePlanesTable extends Migration
             $table->bigInteger('brand_id')->unsigned()->nullable(); ## MARCA
 
             $table->string('qty_passengers'); ## QUANTIDADE DE PASSAGEIROS
-            $table->enum('class', ['Economy', 'Luxury']); ## CLASSE
 
+            $table->bigInteger('class_id')->unsigned()->nullable(); ## CLASSE
 
             ## MARCA
             $table->foreign('brand_id')
                     ->references('id')
                     ->on('brands')
+                    ->onDelete('cascade');
+
+            ## CLASSE
+            $table->foreign('class_id')
+                    ->references('id')
+                    ->on('classes')
                     ->onDelete('cascade');
 
             $table->timestamps();
