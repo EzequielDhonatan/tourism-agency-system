@@ -24,6 +24,10 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
     Route::get('states/{initials}/cities', 'CityController@index')->name('state.cities'); ## CITY
     Route::any('states/{initials}/search', 'CityController@search')->name('state.cities.search'); ## SEARCH CITY
 
+    ## FLIGHT
+    Route::resource('flights', 'FlightController'); ## FLIGHT
+    Route::any('flights/search', 'FlightController@search')->name('flights.search'); ## SEARCH FLIGHT
+
 });
 
 ##  SITE

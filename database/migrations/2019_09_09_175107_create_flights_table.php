@@ -22,17 +22,17 @@ class CreateFlightsTable extends Migration
             $table->bigInteger('airport_origin_id')->unsigned()->nullable(); ## AEROPOTO DE ORIGEM
             $table->bigInteger('airport_destination_id')->unsigned()->nullable(); ## AEROPOTO DE DESTINO
 
-            $table->date('date'); ## DATA
-            $table->time('time_duration'); ## TEMPO DE DURAÇÃO
-            $table->time('hour_output'); ## HORA DE SAÍDA
-            $table->time('arrival_time'); ## HORA DE CHEGADA
-            $table->double('old_price', 10, 2); ## PREÇO ANTIGO
-            $table->double('price', 10, 2); ## PREÇO
-            $table->integer('total_plots'); ## TOTAL DE PARCELAS
-            $table->boolean('is_promotion')->default(false); ## É PROMOÇÃO?
-            $table->string('image', 200)->nullable(); ## IMAGEM
-            $table->integer('qty_stops')->default(0); ## QUANTIDADE DE PARADAS
-            $table->text('description')->nullable(); ## DESCRIÇÃO
+            $table->date('date')->nullable(); ## DATA
+            $table->time('time_duration')->nullable(); ## TEMPO DE DURAÇÃO
+            $table->time('hour_output')->nullable(); ## HORA DE SAÍDA
+            $table->time('arrival_time')->nullable(); ## HORA DE CHEGADA
+            $table->double('old_price', 10, 2)->nullable(); ## PREÇO ANTIGO
+            $table->double('price', 10, 2)->nullable(); ## PREÇO
+            $table->integer('total_plots')->nullable(); ## TOTAL DE PARCELAS
+            $table->boolean('is_promotion')->default(false)->nullable(); ## É PROMOÇÃO?
+            $table->string('image', 200)->nullable()->nullable(); ## IMAGEM
+            $table->integer('qty_stops')->default(0)->nullable(); ## QUANTIDADE DE PARADAS
+            $table->text('description')->nullable()->nullable(); ## DESCRIÇÃO
 
             ## AVIÃO
             $table->foreign('plane_id')

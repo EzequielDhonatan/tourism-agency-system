@@ -31,7 +31,7 @@ class CreateAirportsTable extends Migration
             ## CIDADE
             $table->foreign('city_id')
                     ->references('id')
-                    ->on('brands')
+                    ->on('cities')
                     ->onDelete('cascade');
 
             $table->timestamps();
