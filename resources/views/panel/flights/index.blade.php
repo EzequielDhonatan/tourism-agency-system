@@ -94,14 +94,16 @@
                         <i class="fa fa-info"></i>
                     </a>
 
-                    <form class="form" method="POST" action="{{ route('flights.destroy', $flight->id) }}">
+                    {!! Form::open(['route' => ['flights.destroy', $flight->id], 'class' => 'form form-search form-ds', 'method' => 'DELETE']) !!}
 
-                        {{ csrf_field() }}
-                        {!! method_field('DELETE') !!}
-                    
-                        <button type="submit" class="fa fa-trash delete"></button>
-                    
-                    </form> <!-- form -->
+                        <div class="form-group">
+                            {{-- <button class="delete btn btn-danger">Deletar o voo {{ $flight->id }}</button> --}}
+                            <button class="delete btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+
+                    {!! Form::close() !!} <!-- form -->
                 </td>
 
             </tr> <!-- -->

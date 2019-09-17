@@ -1,96 +1,69 @@
 <div class="form-group">
-    <label for="plane_id">Avião</label>
-    <select class="form-control @error('plane_id') is-invalid @enderror" id="plane_id" name="plane_id">
-        <option value="">Selecione</option>
-        @foreach($planes as $plane_id)
-            <option value="{{ $plane_id->id }}"
-            @if( (isset($flight) && $flight->plane_id == $plane_id->id) || old('plane_id') == $plane_id->id )
-                selected
-            @endif
-            >{{ $plane_id->brand_id }}</option>
-        @endforeach
-    </select>
+    <label for="plane_id">Escolha o avião</label>
+    {!! Form::select('plane_id', $planes, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     <label for="airport_origin_id">Origem</label>
-    <select class="form-control @error('airport_origin_id') is-invalid @enderror" id="airport_origin_id" name="airport_origin_id">
-        <option value="">Selecione</option>
-        @foreach($airports as $airport_origin_id)
-            <option value="{{ $airport_origin_id->id }}"
-            @if( (isset($flight) && $flight->airport_origin_id == $airport_origin_id->id) || old('airport_origin_id') == $airport_origin_id->id )
-                selected
-            @endif
-            >{{ $airport_origin_id->name }}</option>
-        @endforeach
-    </select>
+    {!! Form::select('airport_origin_id', $airports, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     <label for="airport_destination_id">Destino</label>
-    <select class="form-control @error('airport_destination_id') is-invalid @enderror" id="airport_destination_id" name="airport_destination_id">
-        <option value="">Selecione</option>
-        @foreach($airports as $airport_destination_id)
-            <option value="{{ $airport_destination_id->id }}"
-            @if( (isset($flight) && $flight->airport_destination_id == $airport_destination_id->id) || old('airport_destination_id') == $airport_destination_id->id )
-                selected
-            @endif
-            >{{ $airport_destination_id->name }}</option>
-        @endforeach
-    </select>
+    {!! Form::select('airport_destination_id', $airports, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     <label for="date">Data</label>
-    <input type="date" class="form-control" name="date" id="date" value="{{ $flight->date ?? old('date') }}">
+    {!! Form::date('date', null, ['class' => 'form-control', 'placeholder' => 'Data']) !!}
 </div>
 
 <div class="form-group">
     <label for="time_duration">Duração</label>
-    <input type="time" class="form-control" name="time_duration" id="time_duration" value="{{ $flight->time_duration ?? old('time_duration') }}">
+    {!! Form::time('time_duration', null, ['class' => 'form-control', 'placeholder' => 'Duração']) !!}
 </div>
 
 <div class="form-group">
-    <label for="hour_output">Saída</label>
-    <input type="time" class="form-control" name="hour_output" id="hour_output" value="{{ $flight->hour_output ?? old('hour_output') }}">
+    <label for="hour_output">Horas Saída</label>
+    {!! Form::time('hour_output', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    <label for="arrival_time">Chegada</label>
-    <input type="time" class="form-control" name="arrival_time" id="arrival_time" value="{{ $flight->arrival_time ?? old('arrival_time') }}">
+    <label for="arrival_time">Horas Chegada</label>
+    {!! Form::time('arrival_time', null, ['class' => 'form-control', 'placeholder' => 'Horas Chegada']) !!}
 </div>
 
 <div class="form-group">
-    <label for="old_price">Preço antigo</label>
-    <input type="text" class="form-control" name="old_price" id="old_price" value="{{ $flight->old_price ?? old('old_price') }}">
+    <label for="old_price">Preço Anterior</label>
+    {!! Form::text('old_price', null, ['class' => 'form-control', 'placeholder' => 'Preço Anterior']) !!}
 </div>
 
 <div class="form-group">
     <label for="price">Preço</label>
-    <input type="text" class="form-control" name="price" id="price" value="{{ $flight->price ?? old('price') }}">
+    {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Preço']) !!}
 </div>
 
 <div class="form-group">
-    <label for="total_plots">Total de parcelas</label>
-    <input type="text" class="form-control" name="total_plots" id="total_plots" value="{{ $flight->total_plots ?? old('total_plots') }}">
+    <label for="price">Total de Parelas</label>
+    {!! Form::number('total_plots', null, ['class' => 'form-control', 'placeholder' => 'Total de Parelas']) !!}
 </div>
 
 <div class="form-group">
-    <label for="qty_stops">Paradas</label>
-    <input type="text" class="form-control" name="qty_stops" id="qty_stops" value="{{ $flight->qty_stops ?? old('qty_stops') }}">
+    {!! Form::checkbox('is_promotion', true, null, ['id' => 'is_promotion']) !!}
+    <label for="price">É promoção?</label>
 </div>
 
 <div class="form-group">
-    <label for="is_promotion">Promoção</label>
-    <input type="checkbox" class="form-control" name="is_promotion" id="is_promotion" value="{{ $flight->is_promotion ?? old('is_promotion') || true }}">
+    <label for="image">Foto</label>
+    {!! Form::file('image', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    <label for="image">Imagem</label>
-    <input type="file" class="form-control" name="image" id="image" value="{{ $flight->image ?? old('image') }}">
+    <label for="price">Quantidade de paradas</label>
+    {!! Form::number('qty_stops', null, ['class' => 'form-control', 'placeholder' => 'Quantidade de paradas']) !!}
 </div>
 
 <div class="form-group">
-    <label for="description">Descrição</label>
-    <textarea cols="170" rows="10" id="description" name="description"></textarea>
+    <label for="price">Descrição</label>
+    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Descrição do voo']) !!}
 </div>

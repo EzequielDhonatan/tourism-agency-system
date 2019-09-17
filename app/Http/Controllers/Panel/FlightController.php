@@ -34,11 +34,11 @@ class FlightController extends Controller
         $flights = $this->flight->getItems();
 
         ## MARCA
-        $planes = Plane::all();
+        $planes = Plane::pluck('brand_id', 'id');
 
         ## CLASSE
-        $airports = Airport::all();
-        // $airports->prepend('Escolha o aeroporto', '');
+        $airports = Airport::pluck('name', 'id');
+        $airports->prepend('Escolha o aeroporto', '');
 
         ##  RETORNO
         return view('panel.flights.index', compact('title', 'flights', 'planes', 'airports'));
@@ -55,10 +55,10 @@ class FlightController extends Controller
         $title = 'Cadastrar voo';
 
         ## MARCA
-        $planes = Plane::all();
+        $planes = Plane::pluck('brand_id', 'id');
 
         ## CLASSE
-        $airports = Airport::all();
+        $airports = Airport::pluck('name', 'id');
 
         return view('panel.flights.create-edit', compact('title', 'planes', 'airports'));
     }
@@ -136,10 +136,10 @@ class FlightController extends Controller
         $title = "Editar avião: {$flight->name}";
 
         ## MARCA
-        $planes = Plane::all();
+        $planes = Plane::pluck('brand_id', 'id');
 
         ## CLASSE
-        $airports = Airport::all();
+        $airports = Airport::pluck('name', 'id');
 
         return view('panel.flights.create-edit', compact('flight', 'title', 'planes', 'airports'));
     }

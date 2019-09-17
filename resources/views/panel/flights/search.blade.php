@@ -1,50 +1,16 @@
-<form class="form form-inline" method="POST" action="{{ route('flights.search') }}">
+{!! Form::open(['route' => 'flights.search', 'class' => 'form form-inline']) !!}
 
-    {{ csrf_field() }}
+    {!! Form::number('code', null, ['class' => 'form-control', 'placeholder' => 'Código']) !!}
+    {!! Form::date('date', null, ['class' => 'form-control']) !!}
+    {!! Form::time('hour_output', null, ['class' => 'form-control']) !!}
+    {!! Form::number('total_stops', null, ['class' => 'form-control', 'placeholder' => 'Total Paradas']) !!}
 
-    <input type="number" class="form-control" id="code" name="code" placeholder="Código">
-    <input type="date" class="form-control" id="date" name="date" placeholder="Data">
-    <input type="time" class="form-control" id="hour_output" name="hour_output" placeholder="Hora de Saída">
-    <input type="text" class="form-control" id="qty_stops" name="qty_stops" placeholder="Paradas">
+    {!! Form::select('origin', $airports, null, ['class' => 'form-control']) !!}
+    {!! Form::select('destination', $airports, null, ['class' => 'form-control']) !!}
 
-    <select class="form-control" id="plane_id" name="plane_id">
-        <option value="">Marca</option>
-        @foreach($planes as $plane_id)
-            <option value="{{ $plane_id->id }}"
-            @if( (isset($flight) && $flight->plane_id == $plane_id->id) || old('plane_id') == $plane_id->id )
-                selected
-            @endif
-            >{{ $plane_id->brand_id }}</option>
-        @endforeach
-    </select>
+    <button class="btn btn-info">Pesquisar</button>
 
-    <select class="form-control" id="airport_origin_id" id="" name="airport_origin_id">
-        <option value="">Origem</option>
-        @foreach($airports as $airport_origin_id)
-            <option value="{{ $airport_origin_id->id }}"
-            @if( (isset($flight) && $flight->airport_origin_id == $airport_origin_id->id) || old('airport_origin_id') == $airport_origin_id->id )
-                selected
-            @endif
-            >{{ $airport_origin_id->name }}</option>
-        @endforeach
-    </select>
-    
-    <select class="form-control" id="airport_destination_id" name="airport_destination_id">
-        <option value="">Selecione</option>
-        @foreach($airports as $airport_destination_id)
-            <option value="{{ $airport_destination_id->id }}"
-            @if( (isset($flight) && $flight->airport_destination_id == $airport_destination_id->id) || old('airport_destination_id') == $airport_destination_id->id )
-                selected
-            @endif
-            >{{ $airport_destination_id->name }}</option>
-        @endforeach
-    </select>
-
-    <br> <br>
-
-    <button class="btn btn-primary">Pesquisar</button>
-
-</form> <!-- form form-inline -->
+{!! Form::close() !!} <!-- form form-inline -->
 
 @if( isset($dataForm) )
 

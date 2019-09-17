@@ -23,13 +23,11 @@
 
     @if (isset($flight))
 
-        <form class="form form-search form-ds" method="POST" action="{{ route('flights.update', $flight->id) }}" enctype="multipart/form-data">
-            
-        {!! method_field('PUT') !!}
+        {!! Form::model($flight, ['class' => 'form form-search form-ds', 'files' => true, 'method' => 'PUT', 'route' => ['flights.update', $flight->id]]) !!}
 
     @else
 
-        <form class="form form-search form-ds" method="POST" action="{{ route('flights.store') }}" enctype="multipart/form-data">
+        {!! Form::open(['class' => 'form form-search form-ds', 'files' => true, 'route' => 'flights.store']) !!}
 
     @endif
 
@@ -42,7 +40,7 @@
             <a class="btn btn-danger" href="{{ route('flights.index') }}">Cancelar</a>
         </div>
 
-    </form> <!-- form form-search form-ds -->
+    {!! Form::close() !!} <!-- form form-search form-ds -->
 
 </div> <!-- content-din -->
     
