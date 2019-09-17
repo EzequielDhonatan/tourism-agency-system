@@ -28,6 +28,9 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
     Route::resource('flights', 'FlightController'); ## FLIGHT
     Route::any('flights/search', 'FlightController@search')->name('flights.search'); ## SEARCH FLIGHT
 
+    ## AIRPORT
+    Route::resource('city/{id}/airports', 'AirportController'); ## AIRPORT
+
 });
 
 ##  SITE

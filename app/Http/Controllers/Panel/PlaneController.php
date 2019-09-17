@@ -104,8 +104,7 @@ class PlaneController extends Controller
         if (!$plane = $this->plane->find($id))
             return redirect()
                             ->back()
-                            ->withError('Ops... Registro não encontrado!')
-                            ->withInput();
+                            ->withError('Ops... Registro não encontrado!');
 
         ## TÍTULO
         $title = "Editar avião: {$plane->name}";

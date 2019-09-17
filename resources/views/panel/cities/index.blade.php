@@ -36,6 +36,13 @@
                     {{$city->name}}
                 </td>
 
+                <td>
+                    <a class="edit" href="{{ route('airports.index', $city->id) }}">
+                        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                        Aeroportos
+                    </a>
+                </td>
+
             </tr> <!-- -->
 
         @empty

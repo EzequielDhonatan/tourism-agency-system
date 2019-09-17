@@ -4,6 +4,7 @@ namespace App\Models\City;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\State\State;
+use App\Models\Airport\Airport;
 
 class City extends Model
 {
@@ -17,5 +18,10 @@ class City extends Model
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function airports()
+    {
+        return $this->hasMany(Airport::class);
     }
 }
