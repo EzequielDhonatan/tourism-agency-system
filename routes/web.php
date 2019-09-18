@@ -32,6 +32,13 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
     Route::resource('users', 'UserController'); ## USER
     Route::any('users/search', 'UserController@search')->name('users.search'); ## SEARCH USER
 
+    ## RESERVE
+    Route::resource('reserves', 'ReserveController', [
+        // 'only' => [],
+        'except' => ['show', 'destroy']
+    ]); ## RESERVE
+    Route::any('reserves/search', 'ReserveController@search')->name('reserves.search');
+
     ## AIRPORT
     Route::resource('city/{id}/airports', 'AirportController'); ## AIRPORT
 

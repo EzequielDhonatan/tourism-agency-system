@@ -4,6 +4,8 @@ namespace App\Models\Flight;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Airport\Airport;
+use App\Models\Plane\Plane;
+use App\Models\Reserve\Reserve;
 use Carbon\Carbon;
 
 class Flight extends Model
@@ -75,6 +77,17 @@ class Flight extends Model
     public function destination()
     {
         return $this->belongsTo(Airport::class, 'airport_destination_id');
+    }
+
+    public function plane()
+    {
+        return $this->belongsTo(Plane::class);
+    }
+
+    public function reserves()
+    {
+        return $this->hasMany(Reserve::class)
+                        ->where('reserves.status', '<>', 'canceled');
     }
 
     /*
