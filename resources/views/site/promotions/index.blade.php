@@ -10,37 +10,40 @@
 
         <div class="row">
             
-            @for($i =0; $i < 20; $i++)
+            @forelse ($promotions as $flight)
 
                 <article class="result col-lg-3 col-md-4 col-sm-6 col-12">
 
                     <div class="image-promo">
                         
-                        <img src="{{ url('assets/site/images/buenos_aires.jpg') }}" alt="">
+                        <img src="{{ url("storage/flights/{$flight->image}") }}" alt="{{ $flight->id }}">
 
                         <div class="legend">
-                            <h1>Brasília</h1>
-                            <h2>Saída: Goiânia</h2>
-                            <span>Ida e Volta</span>
+                            <h1>{{ $flight->destination->city->name }}</h1>
+                            <h2>Saída: {{ $flight->origin->city->name }}</h2>
+                            <span>Ida</span>
                         </div>
 
                     </div> <!-- image-promo -->
 
                     <div class="details">
 
-                        <p>Data: 12/12/2019</p>
+                        <p>Data: {{ formatDateAndTime($flight->date) }}</p>
 
                         <div class="price">
-                            <span>R$ 259,00</span>
-                            <strong>Em até 6x</strong>
+                            <span>{{ 'R$ ' . number_format($flight->price, 2, ',', '.') }}</span>
+                            <strong>Em até {{ $flight->total_plots }}</strong>
                         </div>
 
-                        <a href="" class="btn btn-buy">Comprar</a>
+                        <a href="{{ route('details.flight', $flight->id) }}" class="btn btn-buy">Detalhes</a>
 
                     </div> <!-- details -->
 
                 </article> <!-- result -->
-            @endfor
+
+            @empty
+                <p class="text-center">Nenhum registro encontrado!</p>
+            @endforelse
 
         </div> <!-- row -->
     </section> <!-- container -->

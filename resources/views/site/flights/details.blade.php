@@ -1,28 +1,15 @@
-@extends('panel.layouts.master')
+@extends('site.layouts.master')
 
 @section('content')
-			
-<div class="bred">
-    <a class="bred" href="{{ route('index') }}">Dashboard ></a>
-    <a class="bred" href="{{ route('flights.index') }}">Voos</a>
-    <a class="bred" href="#">{{ $flight->id }}</a>
-</div>
 
-<div class="title-pg">
-    <h1 class="title-pg">Voos</h1>
-</div>
+<div class="content">
 
-<div class="content-din bg-white">
+    <section class="container">
 
-    <div class="messages">
+        <h1 class="title">Detalhes do voô {{ $flight->id }}</h1>
 
-        @include('panel.includes.alerts') <!-- Alerts -->
-        @include('panel.includes.errors') <!-- Errors -->
-
-    </div> <!-- messages -->
-
-    <div class="content-din">
-        
+        <br>
+    
         <ul>
 
             <li>
@@ -80,11 +67,31 @@
             <li>
                 Descrição: <strong>{{ $flight->description }}</strong>
             </li>
+
+        </ul> <!-- -->
+
+        <div class="messages">
+
+            @include('panel.includes.alerts') <!-- Alerts -->
+            @include('panel.includes.errors') <!-- Errors -->
+
+        </div> <!-- messages -->
+
+        {!! Form::open(['route' => 'reserve.flight']) !!}
+
+            {!! Form::hidden('user_id', auth()->user()->id) !!}
+            {!! Form::hidden('flight_id', $flight->id) !!}
+            {!! Form::hidden('date_reserved', date('Y-m-d')) !!}
+            {!! Form::hidden('status', 'reserved') !!}
+
+            <button type="submit" class="btn btn-success">
+                Reservar agora
+            </button>
             
-        </ul>
+        {!! Form::close() !!}
 
-    </div> <!-- content-din -->
+    </section> <!-- container -->
 
-</div> <!-- content-din -->
+</div> <!-- content -->
     
 @endsection

@@ -131,11 +131,11 @@ class UserController extends Controller
         if($user->delete())
             return redirect()
                 ->route('users.index')
-                ->with('success', 'Deletado com sucesso!');
+                ->withSuccess('Deletado com sucesso!');
         else
             return redirect()
                 ->back()
-                ->with('error', 'Falha ao deletar!');
+                ->withError('Ops... Falha ao deletar!');
     }
 
     public function search(Request $request)

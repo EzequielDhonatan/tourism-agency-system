@@ -3,7 +3,7 @@
 Auth::routes();
 
 ##  PANEL
-Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => ['auth', 'admin']], function () {
     
     Route::resource('', 'PanelController'); ## INDEX
 
@@ -45,9 +45,22 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel', 'middleware' => 'auth
 });
 
 ##  SITE
-Route::group(['namespace' => 'Site'], function () {
+Route::group(['namespace' => 'Site', 'middleware' => 'auth'], function () {
     
-    Route::get('/', 'SiteController@index'); ## HOME
+    Route::get('detalhes-voo/{id}', 'SiteController@detailsFlight')->name('details.flight'); ## DETAILS FLIGHTS
+    Route::post('reservar', 'SiteController@reserveFligth')->name('reserve.flight'); ## RESERVE
+    Route::get('minhas-compras', 'SiteController@myPurchase')->name('purchase.index'); ## PURCHASE
+    Route::get('detalhes-compras/{idReserve}', 'SiteController@purchaseDetails')->name('purchase.details'); ## PURCHASE DETAILS
+    Route::get('meu-perfil', 'SiteController@myProfile')->name('my.profile'); ## MY PROFILE
+    Route::post('atualizar-perfil', 'SiteController@updateProfile')->name('update.profile'); ## MY PROFILE
+    Route::get('sair', 'SiteController@logout')->name('logout.user'); ## LOGOUT USER
+
+});
+
+Route::group(['namespace' => 'Site'], function () {
+
+    Route::get('/', 'SiteController@index')->name('home'); ## HOME
     Route::get('promocoes', 'SiteController@promotions')->name('promotions'); ## PROMOÇÕES
+    Route::post('pesquisar', 'SiteController@search')->name('search.flights.site'); ## SEARCH
 
 });

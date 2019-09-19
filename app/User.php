@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Reserve\Reserve;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,10 @@ class User extends Authenticatable
         return $this->where('name', 'LIKE', "%{$keySearch}%")
                         ->orWhere('email', $keySearch)
                         ->paginate($totalPage);
+    }
+
+    public function reserves()
+    {
+        return $this->hasMany(Reserve::class);
     }
 }

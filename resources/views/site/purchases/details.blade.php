@@ -1,28 +1,15 @@
-@extends('panel.layouts.master')
+@extends('site.layouts.master')
 
 @section('content')
-			
-<div class="bred">
-    <a class="bred" href="{{ route('index') }}">Dashboard ></a>
-    <a class="bred" href="{{ route('flights.index') }}">Voos</a>
-    <a class="bred" href="#">{{ $flight->id }}</a>
-</div>
 
-<div class="title-pg">
-    <h1 class="title-pg">Voos</h1>
-</div>
+<div class="content">
 
-<div class="content-din bg-white">
+    <section class="container">
 
-    <div class="messages">
+        <h1 class="title">Detalhes do voô {{ $flight->id }}</h1>
 
-        @include('panel.includes.alerts') <!-- Alerts -->
-        @include('panel.includes.errors') <!-- Errors -->
-
-    </div> <!-- messages -->
-
-    <div class="content-din">
-        
+        <br>
+    
         <ul>
 
             <li>
@@ -80,11 +67,11 @@
             <li>
                 Descrição: <strong>{{ $flight->description }}</strong>
             </li>
-            
-        </ul>
 
-    </div> <!-- content-din -->
+        </ul> <!-- -->
 
-</div> <!-- content-din -->
+    </section> <!-- container -->
+
+</div> <!-- content -->
     
 @endsection

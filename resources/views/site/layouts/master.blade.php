@@ -23,7 +23,7 @@
                     <span class="navbar-toggler-icon"></span>
 				</button>
 				
-                <a class="navbar-brand" href="?pg=home">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img class="img-menu" src="{{ url('assets/site/images/logo.png') }}" alt="">
 				</a>
 				
@@ -31,7 +31,7 @@
 
                     <ul class="menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('promotions') }}">Promoções</a>
@@ -40,7 +40,7 @@
 					
 				</div> <!-- collapse -->
                 
-                @if (false)
+                @if ( !auth()->check() )
 
                     <div class="main-auth">
                         <a href="{{ route('login') }}" class="sign">ENTRAR</a>
@@ -52,16 +52,23 @@
                     <div class="main-user-auth">
                         <div class="dropdown">
 
-                            <a href="#" class="dropdown-toggle user-auth" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="images/no-image.png" alt="" class="img-header-user">
-                                Nome Usuário
-                            </a>
+                            <a class="dropdown-toggle user-auth" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                @if ( auth()->user()->image )
+                                    <img src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" class="img-header-user">
+                                @else
+                                    <img src="{{ url('assets/site/images/no-image.png') }}" alt="{{ auth()->user()->name }}" class="img-header-user">
+                                @endif
+
+                                {{ auth()->user()->name }}
+
+                            </a> <!-- dropdown-toggle user-auth -->
                             
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Meu Perfil</a>
-                                <a class="dropdown-item" href="#">Minhas Compras</a>
+                                <a class="dropdown-item" href="{{ route('my.profile') }}">Meu Perfil</a>
+                                <a class="dropdown-item" href="{{ route('purchase.index') }}">Minhas Compras</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="">Sair</a>
+                                <a class="dropdown-item" href="{{ route('logout.user') }}">Sair</a>
                             </div>
                             
                         </div> <!-- dropdown -->
